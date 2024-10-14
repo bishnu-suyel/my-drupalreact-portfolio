@@ -1,0 +1,33 @@
+/* Container for both main and additional images */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Main image should be double the size */
+.main-image {
+  width: 100%;
+  height: 800px; /* Double the height */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Additional images should be uniform in size */
+.additional-image {
+  width: 100%;
+  height: 400px; /* Consistent height for additional images */
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Card to ensure uniform spacing around all images */
+.main-card, .additional-card {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 90%;  /* Adjust to control how much space the cards take */
+}
