@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/blogApi";
+import { Card, Row, Col, Container } from "react-bootstrap";
+import "../css/blog.css"; // Add this line to import custom CSS
 
 const Blog = () => {
   const [content, setContent] = useState(null);
@@ -25,32 +27,51 @@ const Blog = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <Container>
       <h1>{content.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: content.body }} />
 
+      {/* Main Image (Double size) */}
       {content.mainImageUrl && (
-        <img
-          src={`http://localhost:49859${content.mainImageUrl}`}
-          alt="Main Blog Image"
-        />
+        <Card className="mb-4 main-card">
+          <Card.Img
+            variant="top"
+            src={`http://localhost:49934${content.mainImageUrl}`}
+            alt="Main Blog Image"
+            className="main-image" // Add a class for custom sizing
+          />
+          <Card.Body>
+            <Card.Text>Main Image for the blog</Card.Text>
+          </Card.Body>
+        </Card>
       )}
 
+      {/* Additional Images (Same size) */}
       {content.additionalImages.length > 0 ? (
         <div>
           <h2>Additional Images</h2>
-          {content.additionalImages.map((imageUrl, index) => (
-            <img
-              key={index}
-              src={`http://localhost:49859${imageUrl}`}
-              alt={`Additional Image ${index + 1}`}
-            />
-          ))}
+          <Row className="justify-content-center">
+            {content.additionalImages.map((imageUrl, index) => (
+              <Col md={6} className="mb-4" key={index}>
+                <Card className="additional-card">
+                  <Card.Img
+                    variant="top"
+                    src={`http://localhost:49934${imageUrl}`}
+                    alt={`Additional Image ${index + 1}`}
+                    className="additional-image" // Add a class for custom sizing
+                  />
+                  <Card.Body>
+                    <Card.Text>{`Additional Image ${index + 1}`}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
         </div>
       ) : (
         <p>No additional images available</p>
       )}
-    </div>
+    </Container>
   );
 };
 
