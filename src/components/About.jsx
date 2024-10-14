@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/api";
+import Layout from "../pages/Layout";
 
 const About = () => {
   const [content, setContent] = useState(null);
@@ -29,8 +30,8 @@ const About = () => {
   }
 
   return (
-    <div>
-      <h1>About</h1>
+    <Layout>
+      <h1>About Me</h1>
       {content && content.attributes && content.attributes.body ? (
         <div
           dangerouslySetInnerHTML={{ __html: content.attributes.body.value }}
@@ -38,7 +39,7 @@ const About = () => {
       ) : (
         <div>No content available</div>
       )}
-    </div>
+    </Layout>
   );
 };
 
