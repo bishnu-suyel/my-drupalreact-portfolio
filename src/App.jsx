@@ -6,6 +6,8 @@ import Project from "./components/Project";
 import Contact from "./components/Contact";
 import Blog from "./components/Blog";
 import Layout from "./pages/Layout";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const App = () => {
   return (
