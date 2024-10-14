@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/api";
-import Layout from "../pages/Layout";
 
 const Contact = () => {
   const [content, setContent] = useState(null);
@@ -30,7 +29,7 @@ const Contact = () => {
   }
 
   return (
-    <Layout>
+    <>
       <h1>Contact Me</h1>
       {content && content.attributes && content.attributes.body ? (
         <div
@@ -39,7 +38,7 @@ const Contact = () => {
       ) : (
         <div>No content available</div>
       )}
-    </Layout>
+    </>
   );
 };
 
