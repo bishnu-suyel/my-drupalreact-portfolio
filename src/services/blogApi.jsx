@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:49934/jsonapi/";
+const API_URL = "http://localhost:49868/jsonapi/";
 
 export const fetchContent = async () => {
   try {
