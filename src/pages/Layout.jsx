@@ -4,16 +4,16 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      {/* Bootstrap Navbar */}
-      <Navbar bg="dark" variant="dark" expand="lg">
+    <div className="d-flex flex-column min-vh-100">
+      {/* Fixed Navbar */}
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
           <Navbar.Brand as={Link} to="/">
             Bishnu Suyel
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-3" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="ms-md-5 me-auto">
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
@@ -34,11 +34,13 @@ const Layout = ({ children }) => {
         </Container>
       </Navbar>
 
-      {/* Main Content */}
-      <main>{children}</main>
+      {/* Page content with equal margins */}
+      <Container>
+        <main>{children}</main>
+      </Container>
 
       {/* Footer */}
-      <footer className="text-center mt-4">
+      <footer className="text-center bg-dark text-light py-3 fixed-bottom">
         <p>
           &copy; {new Date().getFullYear()} Bishnu Suyel. All rights reserved.
         </p>
