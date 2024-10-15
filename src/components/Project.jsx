@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/api";
+import { Container } from "react-bootstrap";
 
 
 const Project = () => {
@@ -30,7 +31,15 @@ const Project = () => {
   }
 
   return (
-    <>
+    <Container
+      style={{
+        marginTop: "70px",
+        marginLeft: "50px",
+        marginRight: "50px",
+        marginBottom: "20px",
+        flex: "1",
+      }}
+    >
       <h1>Projects</h1>
       {content && content.attributes && content.attributes.body ? (
         <div
@@ -39,7 +48,7 @@ const Project = () => {
       ) : (
         <div>No content available</div>
       )}
-    </>
+    </Container>
   );
 };
 
