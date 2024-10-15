@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/blogApi";
 import { Card, Row, Col, Container } from "react-bootstrap";
-import "../css/blog.css"; // Add this line to import custom CSS
+import "../css/blog.css"; // Custom CSS
 
 const Blog = () => {
   const [content, setContent] = useState(null);
@@ -27,26 +27,34 @@ const Blog = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <Container>
+    <Container
+      style={{
+        marginTop: "70px",
+        marginLeft: "50px",
+        marginRight: "50px",
+        marginBottom: "20px",
+        flex: "1",
+      }}
+    >
+      {" "}
+      {/* This Container inherits the layout margin */}
       <h1>{content.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: content.body }} />
-
       {/* Main Image (Double size) */}
       {content.mainImageUrl && (
         <Card className="mb-4 main-card">
           <Card.Img
             variant="top"
-            src={`http://localhost:49934${content.mainImageUrl}`}
+            src={`http://localhost:49868${content.mainImageUrl}`}
             alt="Main Blog Image"
-            className="main-image" // Add a class for custom sizing
+            className="main-image"
           />
           <Card.Body>
             <Card.Text>Main Image for the blog</Card.Text>
           </Card.Body>
         </Card>
       )}
-
-      {/* Additional Images (Same size) */}
+      {/* Additional Images */}
       {content.additionalImages.length > 0 ? (
         <div>
           <h2>Additional Images</h2>
@@ -56,9 +64,9 @@ const Blog = () => {
                 <Card className="additional-card">
                   <Card.Img
                     variant="top"
-                    src={`http://localhost:49934${imageUrl}`}
+                    src={`http://localhost:49868${imageUrl}`}
                     alt={`Additional Image ${index + 1}`}
-                    className="additional-image" // Add a class for custom sizing
+                    className="additional-image"
                   />
                   <Card.Body>
                     <Card.Text>{`Additional Image ${index + 1}`}</Card.Text>

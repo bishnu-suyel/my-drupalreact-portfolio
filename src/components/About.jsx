@@ -1,63 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { fetchContent } from "../services/api";
-
-// const About = () => {
-//   const [content, setContent] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     fetchContent("node/about")
-//       .then((data) => {
-//         console.log("Fetched data:", data);
-//         // Replace relative image paths with absolute URLs
-//         const updatedHtml = data.data[0].attributes.body.value.replace(
-//           /src="(\/sites\/default\/files\/[^"]+)"/g,
-//           `src="http://localhost:49934$1"`
-//         );
-//         setContent({
-//           ...data.data[0],
-//           attributes: {
-//             ...data.data[0].attributes,
-//             body: {
-//               ...data.data[0].attributes.body,
-//               value: updatedHtml,
-//             },
-//           },
-//         });
-//         setLoading(false);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching content:", error);
-//         setError(error);
-//         setLoading(false);
-//       });
-//   }, []);
-
-//   if (loading) {
-//     return <div>Loading...</div>;
-//   }
-
-//   if (error) {
-//     return <div>Error loading content: {error.message}</div>;
-//   }
-
-//   return (
-//     <>
-//       <h1>About Me</h1>
-//       {content && content.attributes && content.attributes.body ? (
-//         <div
-//           dangerouslySetInnerHTML={{ __html: content.attributes.body.value }}
-//         />
-//       ) : (
-//         <div>No content available</div>
-//       )}
-//     </>
-//   );
-// };
-
-// export default About;
-
 import React, { useEffect, useState } from "react";
 import { Image, Row, Col, Container } from "react-bootstrap";
 import { fetchContent } from "../services/api";
@@ -80,7 +20,7 @@ const About = () => {
           const match = bodyValue.match(
             /src="(\/sites\/default\/files\/[^"]+)"/
           );
-          const imageUrl = match ? `http://localhost:49934${match[1]}` : null; // Ensure there's a match
+          const imageUrl = match ? `http://localhost:49868${match[1]}` : null;
 
           setContent({
             ...data.data[0],
@@ -112,7 +52,15 @@ const About = () => {
   }
 
   return (
-    <Container className="ms-5">
+    <Container
+      style={{
+        marginTop: "70px",
+        marginLeft: "50px",
+        marginRight: "50px",
+        marginBottom: "20px",
+        flex: "1",
+      }}
+    >
       <h1>About Me</h1>
       {content && content.attributes && content.attributes.body ? (
         <Row>
@@ -146,4 +94,3 @@ const About = () => {
 };
 
 export default About;
-
