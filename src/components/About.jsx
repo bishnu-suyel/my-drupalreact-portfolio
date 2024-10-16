@@ -20,7 +20,7 @@ const About = () => {
           const match = bodyValue.match(
             /src="(\/sites\/default\/files\/[^"]+)"/
           );
-          const imageUrl = match ? `http://localhost:49868${match[1]}` : null;
+          const imageUrl = match ? `http://localhost:50231${match[1]}` : null;
 
           setContent({
             ...data.data[0],
