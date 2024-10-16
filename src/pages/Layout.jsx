@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
       <div className="custom-margin">
         <footer className="text-center bg-dark text-light py-3 fixed-bottom">
           <p>
-            &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+            &copy; {new Date().getFullYear()} Bishnu Suyel. All rights reserved.
           </p>
         </footer>
       </div>
