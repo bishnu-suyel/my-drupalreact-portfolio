@@ -38,39 +38,33 @@ const Blog = () => {
     >
       {" "}
       {/* This Container inherits the layout margin */}
-      <h1>{content.title}</h1>
+      <h1>My Blog</h1>
       <div dangerouslySetInnerHTML={{ __html: content.body }} />
       {/* Main Image (Double size) */}
       {content.mainImageUrl && (
         <Card className="mb-4 main-card">
           <Card.Img
             variant="top"
-            src={`http://localhost:49868${content.mainImageUrl}`}
+            src={`http://localhost:50231${content.mainImageUrl}`}
             alt="Main Blog Image"
             className="main-image"
           />
-          <Card.Body>
-            <Card.Text>Main Image for the blog</Card.Text>
-          </Card.Body>
         </Card>
       )}
       {/* Additional Images */}
       {content.additionalImages.length > 0 ? (
         <div>
-          <h2>Additional Images</h2>
-          <Row className="justify-content-center">
+          <h2>More Images</h2>
+          <Row className="justify-content-center mb-2">
             {content.additionalImages.map((imageUrl, index) => (
               <Col md={6} className="mb-4" key={index}>
                 <Card className="additional-card">
                   <Card.Img
                     variant="top"
-                    src={`http://localhost:49868${imageUrl}`}
+                    src={`http://localhost:50231${imageUrl}`}
                     alt={`Additional Image ${index + 1}`}
                     className="additional-image"
                   />
-                  <Card.Body>
-                    <Card.Text>{`Additional Image ${index + 1}`}</Card.Text>
-                  </Card.Body>
                 </Card>
               </Col>
             ))}
