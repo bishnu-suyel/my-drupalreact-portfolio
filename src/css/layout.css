@@ -1,0 +1,17 @@
+.logo {
+  font-family: 'Montserrat', sans-serif; /* Use a custom font for a logo effect */
+  font-size: 2rem; /* Increase the font size */
+  font-weight: bold; /* Make the text bold */
+  color: #ffffff; /* Text color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for depth */
+  letter-spacing: 2px; /* Increase space between letters */
+  transition: transform 0.3s; /* Smooth transition on hover */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Scale up on hover */
+}
+
+.custom-margin {
+  margin-top: 80px; /* Adjust this value to your preference */
+}
