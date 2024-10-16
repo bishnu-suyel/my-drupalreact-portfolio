@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import "../css/layout.css"
 
 const Layout = ({ children }) => {
   return (
@@ -8,9 +9,10 @@ const Layout = ({ children }) => {
       {/* Fixed Navbar */}
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
-          <Navbar.Brand as={Link} to="/">
-            Bishnu Suyel
+          <Navbar.Brand as={Link} to="/" className="logo">
+            B.S
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-3" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-md-5 me-auto">
@@ -40,11 +42,13 @@ const Layout = ({ children }) => {
       </Container>
 
       {/* Footer */}
-      <footer className="text-center bg-dark text-light py-3 fixed-bottom">
-        <p>
-          &copy; {new Date().getFullYear()} Bishnu Suyel. All rights reserved.
-        </p>
-      </footer>
+      <div className="custom-margin">
+        <footer className="text-center bg-dark text-light py-3 fixed-bottom">
+          <p>
+            &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+          </p>
+        </footer>
+      </div>
     </div>
   );
 };
