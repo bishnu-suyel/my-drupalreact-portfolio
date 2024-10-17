@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { fetchContent } from "../services/api";
+import "../css/home.css";
+
+const decodeHtmlEntities = (text) => {
+  const doc = new DOMParser().parseFromString(text, "text/html");
+  return doc.documentElement.textContent;
+};
 
 const Home = () => {
   const [content, setContent] = useState(null);
@@ -27,6 +33,11 @@ const Home = () => {
     return <div>Error loading content: {error.message}</div>;
   }
 
+  // Extract plain text from the content and decode HTML entities
+  const text = content?.attributes?.body?.value || "No content available";
+  const decodedText = decodeHtmlEntities(text); // Decode HTML entities
+  const letters = decodedText.split(""); // Split plain text into individual letters
+
   return (
     <Container
       fluid
@@ -36,24 +47,35 @@ const Home = () => {
         justifyContent: "center",
         height: "100vh",
         width: "100%",
-        padding: 0, // Ensures no padding affects layout
-        margin: 0, // Ensures no margin affects layout
+        padding: 0,
+        margin: 0,
       }}
     >
-      {content && content.attributes && content.attributes.body ? (
-        <div
-          dangerouslySetInnerHTML={{ __html: content.attributes.body.value }}
-          style={{
-            fontSize: "4rem",
-            marginLeft:"20rem", // Larger font size
-            padding: "20px", // Padding around the content
-            borderRadius: "8px", // Optional: rounded corners
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Slightly opaque background for contrast
-          }}
-        />
-      ) : (
-        <div>No content available</div>
-      )}
+      <div
+        style={{
+          fontSize: "8rem",
+          color: "#d3d3d3", // Light grey color
+          padding: "20px",
+          marginLeft: "20rem",
+          borderRadius: "8px", // Rounded corners
+          backgroundColor: "rgba(255, 255, 255, 0.8)", // Slightly opaque background
+          fontFamily: "'Dancing Script", // Curvy font
+          display: "flex", // Align letters horizontally
+        }}
+      >
+        {letters.map((letter, index) => (
+          <span
+            key={index}
+            className="dancing-letter"
+            style={{
+              animationDelay: `${index * 0.1}s`,
+              marginRight: "0.5rem", // Add space between letters
+            }}
+          >
+            {letter}
+          </span>
+        ))}
+      </div>
     </Container>
   );
 };
