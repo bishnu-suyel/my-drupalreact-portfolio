@@ -9,7 +9,12 @@ const Layout = ({ children }) => {
       {/* Fixed Navbar */}
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
-          <Navbar.Brand as={Link} to="/" className="logo">
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            className="logo"
+            style={{ color: "#d3d3d3" }}
+          >
             B.S
           </Navbar.Brand>
 
