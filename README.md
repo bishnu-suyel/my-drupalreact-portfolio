@@ -44,33 +44,33 @@ To send emails through Gmail using EmailJS, you'll need to set up Google Cloud C
 
     - Navigate to the API & Services > Library.
     - Search for Gmail API and enable it for your project.
-3. Create Credentials:
 
+3. Create Credentials:
     - Go to API & Services > Credentials.
     - Click on Create Credentials and choose OAuth client ID.
     - Configure the consent screen and then select Web application as the application type.
     - Add authorized redirect URIs (e.g., http://localhost:5173).
+
 4. Obtain the Client ID and Client Secret: These will be used in your EmailJS setup and in your application to authenticate requests.
 
 5. Set up Scopes: Ensure that you request the necessary authentication scopes for sending emails
 
 ## Live Page
 
-Not yet
+    Not yet
 
 ## Screenshot
 
-Not yet
+    Not yet
 
 ## Sources
-
 - [GitHub Guides - Mastering Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [Make a README](https://www.makeareadme.com/)
 - [React Documentation](https://react.dev/learn)
 - [EmailJS Documentation](https://www.emailjs.com/docs/)
 - [Google Cloud Console Documentation](https://cloud.google.com/docs)
-## Authors and Acknowledgment
-This project was developed as part of an assignment.
 
+## Authors and Acknowledgment
+    This project was developed as part of an assignment.
 - [GitHub @bishnu-suyel](https://github.com/bishnu-suyel)
 - [LinkedIn @bishnu-suyel](https://www.linkedin.com/in/bishnu-suyel)
