@@ -26,6 +26,14 @@ const Blog = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  // Define captions for the additional images
+  const additionalImageCaptions = [
+    "Stamford Bridge, London",
+    "Colosseum, Rome",
+    "Eiffel-Tower, Paris",
+    "Porvoo, Finland",
+  ];
+
   return (
     <Container
       style={{
@@ -36,8 +44,6 @@ const Blog = () => {
         flex: "1",
       }}
     >
-      {" "}
-      {/* This Container inherits the layout margin */}
       <h1>My Blog</h1>
       <div dangerouslySetInnerHTML={{ __html: content.body }} />
       {/* Main Image (Double size) */}
@@ -45,10 +51,11 @@ const Blog = () => {
         <Card className="mb-4 main-card">
           <Card.Img
             variant="top"
-            src={`http://localhost:50231${content.mainImageUrl}`}
+            src={`http://localhost:50444${content.mainImageUrl}`}
             alt="Main Blog Image"
             className="main-image"
           />
+          <div className="image-caption">Besishahar, Nepal</div>
         </Card>
       )}
       {/* Additional Images */}
@@ -61,10 +68,14 @@ const Blog = () => {
                 <Card className="additional-card">
                   <Card.Img
                     variant="top"
-                    src={`http://localhost:50231${imageUrl}`}
+                    src={`http://localhost:50444${imageUrl}`}
                     alt={`Additional Image ${index + 1}`}
                     className="additional-image"
                   />
+                  {/* Text below additional images */}
+                  <div className="image-caption">
+                    {additionalImageCaptions[index] || "No caption available."}
+                  </div>
                 </Card>
               </Col>
             ))}
