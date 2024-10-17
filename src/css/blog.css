@@ -13,6 +13,8 @@
   object-fit: cover; /* Ensures the image covers the area without distortion */
   margin-left: auto;
   margin-right: auto;
+  border: 5px solid #d3d3d3; /* Border color and width */
+  border-radius: 8px
 }
 
 /* Additional images should be uniform in size */
@@ -22,6 +24,8 @@
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
+  border: 5px solid #d3d3d3; /* Border color and width */
+  border-radius: 8px;
 }
 
 /* Card to ensure uniform spacing around all images */
@@ -30,4 +34,11 @@
   margin-right: auto;
   width: 100%;
   max-width: 90%;  /* Adjust to control how much space the cards take */
+}
+
+.image-caption {
+  text-align: center;
+  margin-top: 0.5rem; /* Space above the caption */
+  font-size: 1.2rem; /* Font size for the caption */
+  color: #333; /* Text color for the caption */
 }
