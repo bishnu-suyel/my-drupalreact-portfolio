@@ -20,7 +20,7 @@ const About = () => {
           const match = bodyValue.match(
             /src="(\/sites\/default\/files\/[^"]+)"/
           );
-          const imageUrl = match ? `http://localhost:50231${match[1]}` : null;
+          const imageUrl = match ? `http://localhost:50444${match[1]}` : null;
 
           setContent({
             ...data.data[0],
@@ -74,6 +74,7 @@ const About = () => {
                 height={400}
                 rounded
                 className="me-3 float-start" // Float image left with margin
+                style={{ border: "5px solid #d3d3d3",marginTop:"60px" }} // Add border here
               />
             )}
           </Col>
