@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/blogApi";
 import { Card, Row, Col, Container } from "react-bootstrap";
-import "../css/blog.css"; // Custom CSS
+import "../css/blog.css";
 
 const Blog = () => {
   const [content, setContent] = useState(null);
@@ -46,12 +46,11 @@ const Blog = () => {
     >
       <h1>My Blog</h1>
       <div dangerouslySetInnerHTML={{ __html: content.body }} />
-      {/* Main Image (Double size) */}
       {content.mainImageUrl && (
         <Card className="mb-4 main-card">
           <Card.Img
             variant="top"
-            src={`http://localhost:50444${content.mainImageUrl}`}
+            src={`http://localhost:50106${content.mainImageUrl}`}
             alt="Main Blog Image"
             className="main-image"
           />
@@ -68,11 +67,10 @@ const Blog = () => {
                 <Card className="additional-card">
                   <Card.Img
                     variant="top"
-                    src={`http://localhost:50444${imageUrl}`}
+                    src={`http://localhost:50106${imageUrl}`}
                     alt={`Additional Image ${index + 1}`}
                     className="additional-image"
                   />
-                  {/* Text below additional images */}
                   <div className="image-caption">
                     {additionalImageCaptions[index] || "No caption available."}
                   </div>

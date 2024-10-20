@@ -20,7 +20,7 @@ const About = () => {
           const match = bodyValue.match(
             /src="(\/sites\/default\/files\/[^"]+)"/
           );
-          const imageUrl = match ? `http://localhost:50444${match[1]}` : null;
+          const imageUrl = match ? `http://localhost:50106${match[1]}` : null;
 
           setContent({
             ...data.data[0],
@@ -30,7 +30,8 @@ const About = () => {
                 ...data.data[0].attributes.body,
                 value: bodyValue,
               },
-              imageUrl: imageUrl, // Store the image URL separately
+              // Store the image URL separately
+              imageUrl: imageUrl,
             },
           });
         }
@@ -73,8 +74,8 @@ const About = () => {
                 width={400}
                 height={400}
                 rounded
-                className="me-3 float-start" // Float image left with margin
-                style={{ border: "5px solid #d3d3d3",marginTop:"60px" }} // Add border here
+                className="me-3 float-start"
+                style={{ border: "5px solid #d3d3d3",marginTop:"60px" }}
               />
             )}
           </Col>
@@ -82,7 +83,7 @@ const About = () => {
             {/* Display the text wrapped around the image */}
             <div
               dangerouslySetInnerHTML={{
-                __html: content.attributes.body.value.replace(/<img[^>]*>/, ""), // Remove the <img> tag to avoid duplication
+                __html: content.attributes.body.value.replace(/<img[^>]*>/, ""),
               }}
             />
           </Col>
