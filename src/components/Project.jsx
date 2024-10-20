@@ -11,12 +11,11 @@ const Project = () => {
   useEffect(() => {
     fetchContent("node/projects")
       .then((data) => {
-        console.log("Fetched data:", data); // Log the fetched data
-        setContent(data.data[0]); // Access the first item in the data array
+        setContent(data.data[0]); 
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching content:", error); // Log any errors
+        console.error("Error fetching content:", error);
         setError(error);
         setLoading(false);
       });
