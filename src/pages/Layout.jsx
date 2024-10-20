@@ -6,7 +6,6 @@ import "../css/layout.css"
 const Layout = ({ children }) => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      {/* Fixed Navbar */}
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
           <Navbar.Brand
@@ -41,7 +40,6 @@ const Layout = ({ children }) => {
         </Container>
       </Navbar>
 
-      {/* Page content with equal margins */}
       <Container>
         <main>{children}</main>
       </Container>
