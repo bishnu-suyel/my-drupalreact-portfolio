@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/api";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import emailjs from "emailjs-com"; // Import EmailJS
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const [content, setContent] = useState(null);
@@ -38,13 +38,13 @@ const Contact = () => {
    e.preventDefault();
 
    const emailData = {
-     name: formData.name, // Updated field names
+     name: formData.name,
      email: formData.email,
      subject: formData.subject,
      message: formData.message,
    };
 
-   // Use EmailJS to send the email (if you still want to keep this)
+   // Use EmailJS to send the email
    emailjs
      .send(
        import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -61,7 +61,8 @@ const Contact = () => {
          headers: {
            "Content-Type": "application/json",
          },
-         body: JSON.stringify(emailData), // Updated to match the controller
+         // Updated to match the controller
+         body: JSON.stringify(emailData),
        })
          .then((res) => {
            if (!res.ok) {
@@ -99,7 +100,7 @@ const Contact = () => {
     >
       <h1>Contact Me</h1>
       <Row>
-        <Col md={8}>
+        <Col md={6}>
           {content && content.attributes && content.attributes.body ? (
             <div
               dangerouslySetInnerHTML={{
@@ -110,7 +111,7 @@ const Contact = () => {
             <div>No content available</div>
           )}
         </Col>
-        <Col md={4}>
+        <Col md={4} >
           <h2>Send a message</h2>
           <p>
             Don’t hesitate to reach out. I look forward to hearing your thoughts
@@ -125,7 +126,6 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{ marginLeft: "0px" }}
               />
             </Form.Group>
             <Form.Group controlId="formEmail" className="mb-3">
