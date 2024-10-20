@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/api";
 import { Container } from "react-bootstrap";
 
-
 const Project = () => {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,7 +10,9 @@ const Project = () => {
   useEffect(() => {
     fetchContent("node/projects")
       .then((data) => {
-        setContent(data.data[0]); 
+        let htmlContent = data.data[0]?.attributes?.body?.value || "";
+        htmlContent = htmlContent.replace(/<a /g, '<a target="_blank" ');
+        setContent(htmlContent);
         setLoading(false);
       })
       .catch((error) => {
@@ -40,10 +41,8 @@ const Project = () => {
       }}
     >
       <h1>Projects</h1>
-      {content && content.attributes && content.attributes.body ? (
-        <div
-          dangerouslySetInnerHTML={{ __html: content.attributes.body.value }}
-        />
+      {content ? (
+        <div dangerouslySetInnerHTML={{ __html: content }} />
       ) : (
         <div>No content available</div>
       )}
