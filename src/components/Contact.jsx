@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "../services/api";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import emailjs from "emailjs-com"; // Import EmailJS
 
 const Contact = () => {
   const [content, setContent] = useState(null);
@@ -16,12 +17,12 @@ const Contact = () => {
   useEffect(() => {
     fetchContent("node/contact")
       .then((data) => {
-        console.log("Fetched data:", data); // Log the fetched data
-        setContent(data.data[0]); // Access the first item in the data array
+        console.log("Fetched data:", data);
+        setContent(data.data[0]);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching content:", error); // Log any errors
+        console.error("Error fetching content:", error);
         setError(error);
         setLoading(false);
       });
@@ -32,31 +33,60 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://your-drupal-site.com/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-      console.log(data); // Handle success or error here
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
+  
+ const handleSubmit = (e) => {
+   e.preventDefault();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+   const emailData = {
+     name: formData.name, // Updated field names
+     email: formData.email,
+     subject: formData.subject,
+     message: formData.message,
+   };
 
-  if (error) {
-    return <div>Error loading content: {error.message}</div>;
-  }
+   // Use EmailJS to send the email (if you still want to keep this)
+   emailjs
+     .send(
+       import.meta.env.VITE_EMAILJS_SERVICE_ID,
+       import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+       emailData,
+       import.meta.env.VITE_EMAILJS_PUBLIC_API_KEY
+     )
+     .then((response) => {
+       console.log("Email sent successfully:", response.status, response.text);
 
+       // Now send the form data to Drupal
+       fetch("http://my-drupal-portfolio.lndo.site/api/contact", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(emailData), // Updated to match the controller
+       })
+         .then((res) => {
+           if (!res.ok) {
+             throw new Error("Failed to send data to Drupal");
+           }
+           return res.json();
+         })
+         .then((data) => {
+           console.log("Data sent to Drupal successfully:", data);
+           // Reset form after successful submission
+           setFormData({
+             name: "",
+             email: "",
+             subject: "",
+             message: "",
+           });
+         })
+         .catch((error) => {
+           console.error("Error sending data to Drupal:", error);
+         });
+     })
+     .catch((error) => {
+       console.error("Error sending email:", error);
+     });
+ };
   return (
     <Container
       style={{
@@ -83,24 +113,19 @@ const Contact = () => {
         <Col md={4}>
           <h2>Send a message</h2>
           <p>
-           Don’t hesitate to reach out. I look forward to
-            hearing your thoughts and ideas!
+            Don’t hesitate to reach out. I look forward to hearing your thoughts
+            and ideas!
           </p>
-          <Form
-            action="MAILTO:bishnu.suyel@edu.bc.fi"
-            method="post"
-            enctype="text/plain"
-            onSubmit={handleSubmit}
-          >
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formName" className="mb-3">
               <Form.Control
                 type="text"
-                placeholder="Name"
+                placeholder="Full Name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{ marginLeft: "0px" }} // Set left margin to 0 pixels
+                style={{ marginLeft: "0px" }}
               />
             </Form.Group>
             <Form.Group controlId="formEmail" className="mb-3">
@@ -111,7 +136,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                style={{ marginLeft: "0px" }} // Set left margin to 0 pixels
+                style={{ marginLeft: "0px" }}
               />
             </Form.Group>
             <Form.Group controlId="formSubject" className="mb-3">
@@ -122,7 +147,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                style={{ marginLeft: "0px" }} // Set left margin to 0 pixels
+                style={{ marginLeft: "0px" }}
               />
             </Form.Group>
             <Form.Group controlId="formMessage" className="mb-3">
@@ -134,7 +159,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                style={{ marginLeft: "0px" }} // Set left margin to 0 pixels
+                style={{ marginLeft: "0px" }}
               />
             </Form.Group>
             <Button variant="primary" type="submit" className="mb-3">
